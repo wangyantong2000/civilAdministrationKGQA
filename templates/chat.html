@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+    <title>民政内容问答系统</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="title">
+            <h2 class="text-center">民政内容问答系统</h2>
+        </div>
+        <div class="answer">
+          <div class="tips text-center">
+       <div class="card" style="float: left;padding-left: 20%;padding-top: 5%;width: 47%">
+            <img src="./static/images/提示.png" class="card-img-top" style="width: 30%">
+                <h4>提示</h4>
+              <div class="card-body" style="border-radius: 10px;background: rgba(175,177,178,0.45);margin-top: 10%;border:1px solid rgba(240,248,255,0.4);box-shadow: 0px 1px 10px 0px rgba(14,13,13,0.93);">
+                <p class="lead text-center"style="text-align: center;margin-bottom: 0%;padding-top:2%;padding-bottom: 2%;padding-right: 2%;padding-left: 2%" >
+                    您好，请问有什么可以帮助到您的吗？
+                </p>
+              </div>
+           <div class="card-body" style="border-radius: 10px;background: rgba(175,177,178,0.45);margin-top: 10%;border:1px solid rgba(240,248,255,0.4);box-shadow: 0px 1px 10px 0px rgba(14,13,13,0.93);">
+                <p class="lead text-center"style="text-align: center;margin-bottom: 0%;padding-top:2%;padding-bottom: 2%;padding-right: 2%;padding-left: 2%" >
+                    请对您的问题进行相应描述。
+                </p>
+              </div>
+           <div class="card-body" style="border-radius: 10px;background: rgba(175,177,178,0.45);margin-top: 10%;border:1px solid rgba(240,248,255,0.4);box-shadow: 0px 1px 10px 0px rgba(14,13,13,0.93);">
+                <p class="lead text-center"style="text-align: center;margin-bottom: 0%;padding-top:2%;padding-bottom: 2%;padding-right: 2%;padding-left: 2%" >
+                    如果结束问答，请输入“结束”。
+                </p>
+              </div>
+
+       </div>
+<div class="card" style="float: right;padding-right: 20%;padding-top: 5%;width: 47%" >
+
+            <img src="./static/images/示例.png" class="card-img-top" style="width: 30%" >
+              <h4>示例</h4>
+            <div class="card-body" style="border-radius: 10px;background: rgba(175,177,178,0.45);margin-top: 10%;border:1px solid rgba(240,248,255,0.4);box-shadow: 0px 1px 10px 0px rgba(14,13,13,0.93);">
+                <p class="lead text-center"style="text-align: center;margin-bottom: 0%;padding-top:2%;padding-bottom: 2%;padding-right: 2%;padding-left: 2%" >
+                    “我是香港居民,想<br/>办理婚姻登记应该怎么做？”
+                </p>
+              </div>
+                <div class="card-body" style="border-radius: 10px;background: rgba(175,177,178,0.45);margin-top: 10%;border:1px solid rgba(240,248,255,0.4);box-shadow: 0px 1px 10px 0px rgba(14,13,13,0.93);">
+                <p class="lead text-center"style="text-align: center;margin-bottom: 0%;padding-top:2%;padding-bottom: 2%;padding-right: 2%;padding-left: 2%" >
+                    “夫妻的义务”
+                </p>
+              </div>
+                <div class="card-body" style="border-radius: 10px;background: rgba(175,177,178,0.45);margin-top: 10%;border:1px solid rgba(240,248,255,0.4);box-shadow: 0px 1px 10px 0px rgba(14,13,13,0.93);">
+                <p class="lead text-center"style="text-align: center;margin-bottom: 0%;padding-top:2%;padding-bottom: 2%;padding-right: 2%;padding-left: 2%" >
+                    “华侨在哪儿办理婚姻登记”
+                </p>
+              </div>
+       </div>
+          </div>
+          <div id="chatWindow"></div>
+            <div class="input-group ipt">
+              <div class="col-xs-12">
+                <textarea id="chatInput" class="form-control" rows="1"></textarea>
+              </div>
+              <button id="chatBtn" class="btn btn-primary" type="button"> <img src="./static/images/箭头.png" style="width: auto;height: 30px"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="row foot">
+      <footer class="col-xs-12" style="margin-top: 20px;">
+
+        <p class="lead text-center" >
+          <a href="/" >首页</a>
+        </p>
+      </footer>
+    </div>
+  </div>
+
+</body>
+
+<script src="./static/js/jquery-2.1.1.js"></script>
+<script src="./static/js/bootstrap.min.js"></script>
+<script src="./static/js/marked.min.js"></script>
+<script src="./static/js/layer/layer.js"></script>
+<script src="./static/js/custom.js"></script>
+</html>
