@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>民政内容问答系统</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script type="text/javascript" src="{{ url_for('static',filename='js/echarts.js') }}"></script>
+</head>
+
+<body style="margin: auto;padding: 0px;height: calc(100vh)">
+<div class="up">
+    <div>
+        <a href="/" style="float: right;padding-top: 25px;padding-right: 35px;">
+            <div class="btn btn-outline-secondary" style="color: white;border-color: white;height: 45px;width: 70px;font-size: 22px">
+                返回
+            </div>
+        </a>
+        <h1 class="t">民政问答系统</h1>
+    </div>
+    <form action="{{ url_for('search1') }}" method="post" class="main">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <!-- <select name="c" class="btn btn-outline-secondary dropdown-toggle"  data-toggle="dropdown" aria-expanded="false">
+                        <option >工作人员</option>
+                        <option >用户</option></select>-->
+          </div>
+          <input type="text" name="q" class="form-control"  style="width: 500px;"placeholder="请输入您的问题">
+          <button  class="btn btn-outline-secondary" style="color: white;border-color: white">搜索</button>
+        </div>
+
+    </form>
+
+</div>
+<div class="down">
+    <div id="container" class="img">
+        <script type="text/javascript">
+            var neo4j_data = [{{ neo4j_data|safe }}]
+            var data1 = neo4j_data[0]['data']
+            var links1 = neo4j_data[0]['links']
+            console.log(data1)
+            console.log(links1)
+            var myChart1 = echarts.init(document.getElementById('container'));
+            var categories1 = [{name: "业务类别"},{name: "业务" }];
+            option1 = {
+                // 图的标题
+                title: {
+                    text: '民政知识图谱'
+                },
+                // 提示框的配置
+                tooltip: {
+                    formatter: function (x) {
+                        return x.data.des;
+                    }
+                },
+                // 工具箱
+                toolbox: {
+                    // 显示工具箱
+                    show: true,
+                    feature: {
+                        mark: {
+                            show: true
+                        },
+                        // 还原
+                        restore: {
+                            show: true
+                        },
+                        // 保存为图片
+                        saveAsImage: {
+                            show: true
+                        }
+                    }
+                },
+               // legend: [{
+                    // selectedMode: 'single',
+               //     data: categories1.map(function (a) {
+                //        return a.name;
+                 //   })
+               // }],
+
+                series: [{
+                    type: 'graph', // 类型:关系图
+                    layout: 'force', //图的布局，类型为力导图
+
+                    roam: true, // 是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移,可以设置成 'scale' 或者 'move'。设置成 true 为都开启
+                    focusNodeAdjacency:true,//当鼠标移动到节点上，突出显示节点以及节点的边和邻接节点
+                    edgeSymbolSize: [2, 10],
+                    edgeSymbol: ['arrow', 'arrow'],
+                    legendHoverLink : true,//是否启用图例 hover(悬停) 时的联动高亮。
+                    force: {
+                        repulsion: 2500,
+                        edgeLength: [10, 50]
+                    },
+
+                    draggable: true,
+                    lineStyle: {
+                        width: 2,
+                        color: '#01090c',
+
+
+                    },
+                    edgeLabel: {
+                        show: true,
+                        formatter: function (x) {
+                            return x.data.name;
+                        },
+
+                        fontSize: 20,
+                        textStyle:{
+
+                            color:"#000",
+		},
+
+                        color:'#000',
+
+                    },
+
+                    label: {
+
+                        fontSize: 30,
+                        show: true,
+                    },
+                    data: data1,
+                    links: links1,
+                    categories: categories1,
+
+               itemStyle: {//设置节点样式
+                   normal: {
+                      strokeColor: '#000',
+                    strokeWidth:20,
+                       //函数接收params参数，params就是当前data数组的每一项，把颜色return出来就可以啦~
+                       color: function (params) {
+                           return params.data.color;
+                       },
+
+
+                   }
+               },
+                    symbolStrokeColor: '#000',
+                    symbolStrokeWidth:20,
+                symbolSize: function (value, params) {//改变节点大小
+                    return params.data.size
+                },
+
+                    // 数据
+                }]
+            };
+
+            myChart1.setOption(option1);
+            window.addEventListener('resize',function(){
+		    myChart1.resize();});
+		    myChart1.on('click', function (param){
+                if (param.dataType == 'node') {
+                    window.location.href = "/worker?question="+param.name;
+                }
+            });
+
+        </script>
+
+    </div>
+</div>
+</body>
+</html>
